@@ -35,6 +35,7 @@ const router = new Router({
       		path: '/administrators',
       		name:'管理员列表',
       		component: resolve => require(['@/views/administrators'], resolve),
+          meta:{requireAuth:true},
       	}
       ]
     },
@@ -49,11 +50,13 @@ const router = new Router({
           path: '/productList',
           name:'商品列表',
           component: resolve => require(['@/views/product/productList'], resolve),
+          meta:{requireAuth:true},
         },
         {
           path: '/addProduct',
           name:'添加商品',
           component: resolve => require(['@/views/product/addProduct'], resolve),
+          meta:{requireAuth:true},
         }
       ]
     },
@@ -67,23 +70,24 @@ const router = new Router({
       		path: '/newsList',
       		name:'新闻列表',
       		component: resolve => require(['@/views/news/newsList'], resolve),
+          meta:{requireAuth:true},
       	}
       ]
     },
   ]
 })
 
-/*router.beforeEach((to,from,next)=>{
+router.beforeEach((to,from,next)=>{
 	if (to.path == '/login') {
-		sessionStorage.removeItem('user');
+		sessionStorage.removeItem('loginName');
 	}
-	let user = JSON.parse(sessionStorage.getItem('user'))
-	if (!user && to.path != '/login') {
+	let loginName = sessionStorage.getItem('loginName')
+	if (!loginName && to.path != '/login') {
 		next({path: '/login'})
 	}else{
 		next()
 	}
-})*/
+})
 
 
 export default router

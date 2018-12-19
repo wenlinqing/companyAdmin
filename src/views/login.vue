@@ -55,7 +55,7 @@
                   timeout: 1500,
                   icon: 'success',
                   callback: () => {
-                    this.$router.replace('/administrators')
+                    this.$router.replace('/productList')
                   }
               });
             },err=>{
